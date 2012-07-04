@@ -10,7 +10,7 @@ Author URI: http://nebulosaweb.com
 
 include("sfpw-func.php");
 
-wp_enqueue_style('sfpw-style', plugins_url().'/SFPW/sfpw-style.css');
+wp_enqueue_style('sfpw-style', plugin_dir_url(__FILE__).'/sfpw-style.css');
 
 class sfpWidget extends WP_Widget {
 	function sfpWidget() {
