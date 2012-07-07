@@ -39,7 +39,7 @@ class sfpWidget extends WP_Widget {
 			$myposts = get_posts( $args );
 			foreach( $myposts as $post ) : setup_postdata($post); ?>
 				<li>
-					<?php if($instance['image'] == 1){ echo "<img width='150' src='".first_image()."' alt='".the_title('','',FALSE)."'/>";} ?>
+					<?php if($instance['image'] == 1){ echo "<img width='150' src='"plugin_dir_url(__FILE__)."/".first_image()."' alt='".the_title('','',FALSE)."'/>";} ?>
 				<h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
 				<span><?php the_time('j F Y') ?></span>
 				</li>
