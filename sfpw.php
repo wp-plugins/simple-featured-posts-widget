@@ -4,7 +4,7 @@ Plugin Name: Simple Featured Posts Widget
 Plugin URI: http://www.nebulosaweb.com/wordpress/simple-featured-post-widget-articoli-con-immagine-di-anteprima/
 Description: Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
 Author: Fabio Di Stasio
-Version: 1.0.1
+Version: 1.1
 Author URI: http://nebulosaweb.com
 */
 
@@ -39,9 +39,23 @@ class sfpWidget extends WP_Widget {
 			$myposts = get_posts( $args );
 			foreach( $myposts as $post ) : setup_postdata($post); ?>
 				<li>
-					<?php if($instance['image'] == 1){ echo "<img width='150' src='".plugin_dir_url(__FILE__)."/".first_image()."' alt='".the_title('','',FALSE)."'/>";} ?>
+					<?php 
+						if($instance['image'] == 1){ 
+							$size = imgSize(first_image());
+							if($instance['size'] != null or $instance['size'] == 0){
+								$setWitdh = "150";
+							}
+							else{
+								$setWitdh = $instance['image'];
+							}
+							
+							$h = @ceil($size[1]/($size[0]/$setWitdh));
+							
+							echo "<img width='".$setWitdh."' height='".$h."' src='".first_image()."' alt='".the_title('','',FALSE)."'/>";
+						} 
+					?>
 				<h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
-				<span><?php the_time('j F Y') ?></span>
+				<?php if($instance['date'] == 1):?><span><?php the_time('j F Y') ?></span><?php endif; ?>
 				</li>
 			<?php endforeach;
 			$post = $tmp_post; ?>
@@ -59,6 +73,8 @@ class sfpWidget extends WP_Widget {
 			$order = $instance['order'];
 			$category = esc_attr($instance['category']);
 			$image = $instance['image'];
+			$date = $instance['date'];
+			$size = $instance['size'];
 		}
 		else{
 			$title = "Featured Posts";
@@ -66,6 +82,8 @@ class sfpWidget extends WP_Widget {
 			$order = "rand";
 			$category = "";
 			$image = 1;
+			$date = 1;
+			$size = 150;
 		}?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title');?>"><?php _e('Title:'); ?></label> 
@@ -90,7 +108,14 @@ class sfpWidget extends WP_Widget {
 		<p>
 			<input class="checkbox" <?php if($image == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('image');?>" name="<?php echo $this->get_field_name('image');?>" type="checkbox" value="1"/>
 			<label for="<?php echo $this->get_field_id('imahe');?>"><?php _e('Show thumbnail','sfpw'); ?></label> 
-
+		</p>
+		<p>
+			<input class="checkbox" <?php if($date == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('date');?>" name="<?php echo $this->get_field_name('date');?>" type="checkbox" value="1"/>
+			<label for="<?php echo $this->get_field_id('date');?>"><?php _e('Show date','sfpw'); ?></label> 
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('size');?>"><?php _e('Thumbnail witdh','sfpw'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('size');?>" name="<?php echo $this->get_field_name('size');?>" type="text" value="<?php echo $size; ?>"/>
 		</p>
 		<?php
 	}
