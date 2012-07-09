@@ -8,10 +8,17 @@ function first_image() {
 	$first_img = $matches [1] [0];
 
 	if(empty($first_img)){ //Defines a default image
-		$first_img = "images/default.jpg";
+		$first_img = plugin_dir_url(__FILE__)."/""images/default.jpg";
 	}
 		
 	return $first_img;
 }
+
+function imgSize($img){
+	$size = getimagesize($img);
+	$w = $size[0];
+	$h = $size[1];
+}
+
 add_action('wp_head', 'first_image');
 ?>
