@@ -114,7 +114,7 @@ class sfpWidget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('date');?>"><?php _e('Show date','sfpw'); ?></label> 
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('size');?>"><?php _e('Thumbnail witdh','sfpw'); ?></label> 
+			<label for="<?php echo $this->get_field_id('size');?>"><?php _e('Thumbnail witdh:','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('size');?>" name="<?php echo $this->get_field_name('size');?>" type="text" value="<?php echo $size; ?>"/>
 		</p>
 		<?php
