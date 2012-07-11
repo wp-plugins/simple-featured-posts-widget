@@ -8,7 +8,7 @@ function first_image() {
 	$first_img = $matches [1] [0];
 
 	if(empty($first_img)){ //Defines a default image
-		$first_img = plugin_dir_url(__FILE__)."/images/default.png";
+		$first_img = plugin_dir_url(__FILE__)."images/default.png";
 	}
 		
 	return $first_img;
