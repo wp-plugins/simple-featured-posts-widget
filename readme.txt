@@ -49,7 +49,7 @@ You can replace default image in /wp-content/plugins/simple-featured-posts-widge
 == Changelog ==
 
 = 1.2 =
-* Now support post-thumbnails function
+* Now supports post-thumbnails function
 * Thumbnail height setting
 
 = 1.1.1 =
