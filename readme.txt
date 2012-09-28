@@ -4,7 +4,7 @@ Donate link:
 Tags: featured, posts, widget, thumbnail
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Simple Featured Posts is a pratical widget that allows you to show a post list w
 == Description ==
 
 Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
-This widget show the first image found in the post as thumbnail.
+This widget show the first image found in the post as thumbnail or thumbnail image of posts if supported by template.
 
 = Features =
 
@@ -47,6 +47,10 @@ You can replace default image in /wp-content/plugins/simple-featured-posts-widge
 2. Appearence.
 
 == Changelog ==
+
+= 1.2 =
+* Now support post-thumbnails function
+* Thumbnail height setting
 
 = 1.1.1 =
 * Fixed a bug with thumbnail size.

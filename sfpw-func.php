@@ -7,7 +7,7 @@ function first_image() {
 	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
 	$first_img = $matches [1] [0];
 
-	if(empty($first_img)){ //Defines a default image
+	if(empty($first_img)){ //<- 	Defines a default image
 		$first_img = plugin_dir_url(__FILE__)."images/default.png";
 	}
 		

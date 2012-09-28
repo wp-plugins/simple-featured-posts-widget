@@ -4,7 +4,7 @@ Plugin Name: Simple Featured Posts Widget
 Plugin URI: http://www.nebulosaweb.com/wordpress/simple-featured-post-widget-articoli-con-immagine-di-anteprima/
 Description: Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
 Author: Fabio Di Stasio
-Version: 1.1.1
+Version: 1.2
 Author URI: http://nebulosaweb.com
 */
 
@@ -41,17 +41,30 @@ class sfpWidget extends WP_Widget {
 				<li>
 					<?php 
 						if($instance['image'] == 1){ 
-							$size = imgSize(first_image());
-							if($instance['size'] == null or $instance['size'] == 0){
-								$setWitdh = "150";
+							
+							if(has_post_thumbnail()){ //<- check if the post has a Post Thumbnail assigned to it
+								$extractUrl = wp_get_attachment_image_src( get_post_thumbnail_id(), 'thumbnail');
+								$imageUrl = $extractUrl[0];
 							}
 							else{
-								$setWitdh = $instance['size'];
+								$imageUrl = first_image();
 							}
 							
-							$h = @ceil($size[1]/($size[0]/$setWitdh));
-							
-							echo "<img width='".$setWitdh."' height='".$h."' src='".first_image()."' alt='".the_title('','',FALSE)."'/>";
+							if($instance['sizeH'] == NULL){ //<- if is set just width
+								$size = imgSize(first_image());
+								if($instance['size'] == null or $instance['size'] == 0){
+									$w = "150";
+								}
+								else{
+									$w = $instance['size'];
+								}
+								$h = @ceil($size[1]/($size[0]/$w));
+							}
+							else{
+								$w = $instance['size'];
+								$h = $instance['sizeH'];
+							}
+							echo "<img width='".$w."' height='".$h."' src='".$imageUrl."' alt='".the_title('','',FALSE)."'/>";
 						} 
 					?>
 				<h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
@@ -66,7 +79,7 @@ class sfpWidget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		return $new_instance;
 	}
-	function form( $instance ) { //setta i parametri di default del widget
+	function form( $instance ) { //<- set default parameters of widget
 		if($instance){
 			$title = esc_attr($instance['title']);
 			$nPosts = esc_attr($instance['nPosts']);
@@ -75,6 +88,7 @@ class sfpWidget extends WP_Widget {
 			$image = $instance['image'];
 			$date = $instance['date'];
 			$size = $instance['size'];
+			$sizeH = $instance['sizeH'];
 		}
 		else{
 			$title = "Featured Posts";
@@ -84,6 +98,7 @@ class sfpWidget extends WP_Widget {
 			$image = 1;
 			$date = 1;
 			$size = 150;
+			$sizeH = '';
 		}?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title');?>"><?php _e('Title:'); ?></label> 
@@ -106,16 +121,21 @@ class sfpWidget extends WP_Widget {
 			<small>Category IDs, separated by commas</small>
 		</p>
 		<p>
-			<input class="checkbox" <?php if($image == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('image');?>" name="<?php echo $this->get_field_name('image');?>" type="checkbox" value="1"/>
-			<label for="<?php echo $this->get_field_id('imahe');?>"><?php _e('Show thumbnail','sfpw'); ?></label> 
-		</p>
-		<p>
 			<input class="checkbox" <?php if($date == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('date');?>" name="<?php echo $this->get_field_name('date');?>" type="checkbox" value="1"/>
 			<label for="<?php echo $this->get_field_id('date');?>"><?php _e('Show date','sfpw'); ?></label> 
 		</p>
 		<p>
+			<input class="checkbox" <?php if($image == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('image');?>" name="<?php echo $this->get_field_name('image');?>" type="checkbox" value="1"/>
+			<label for="<?php echo $this->get_field_id('imahe');?>"><?php _e('Show thumbnail','sfpw'); ?></label> 
+		</p>
+		<p>
 			<label for="<?php echo $this->get_field_id('size');?>"><?php _e('Thumbnail witdh:','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('size');?>" name="<?php echo $this->get_field_name('size');?>" type="text" value="<?php echo $size; ?>"/>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('sizeH');?>"><?php _e('Thumbnail height:','sfpw'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('sizeH');?>" name="<?php echo $this->get_field_name('sizeH');?>" type="text" value="<?php echo $sizeH; ?>"/>
+			<small>Automatically set if blank</small>
 		</p>
 		<?php
 	}
