@@ -4,7 +4,7 @@ Donate link:
 Tags: featured, posts, widget, thumbnail
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,9 @@ You can replace default image in /wp-content/plugins/simple-featured-posts-widge
 2. Appearence.
 
 == Changelog ==
+
+= 1.2.1 =
+* Thumbnails as links.
 
 = 1.2 =
 * Now supports post-thumbnails function

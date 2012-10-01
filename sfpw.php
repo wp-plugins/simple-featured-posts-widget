@@ -4,7 +4,7 @@ Plugin Name: Simple Featured Posts Widget
 Plugin URI: http://www.nebulosaweb.com/wordpress/simple-featured-post-widget-articoli-con-immagine-di-anteprima/
 Description: Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
 Author: Fabio Di Stasio
-Version: 1.2
+Version: 1.2.1
 Author URI: http://nebulosaweb.com
 */
 
@@ -64,7 +64,7 @@ class sfpWidget extends WP_Widget {
 								$w = $instance['size'];
 								$h = $instance['sizeH'];
 							}
-							echo "<img width='".$w."' height='".$h."' src='".$imageUrl."' alt='".the_title('','',FALSE)."'/>";
+							echo "<a href='".get_permalink()."' title='".get_the_title()."'><img width='".$w."' height='".$h."' src='".$imageUrl."' alt='".the_title('','',FALSE)."'/></a>";
 						} 
 					?>
 				<h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
