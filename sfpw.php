@@ -52,7 +52,7 @@ class sfpWidget extends WP_Widget {
 							
 							if($instance['sizeH'] == NULL){ //<- if is set just width
 								$size = imgSize(first_image());
-								if($instance['size'] == null or $instance['size'] == 0){
+								if($instance['size'] == '' or $instance['size'] == 0){
 									$w = "150";
 								}
 								else{
@@ -61,7 +61,12 @@ class sfpWidget extends WP_Widget {
 								$h = @ceil($size[1]/($size[0]/$w));
 							}
 							else{
-								$w = $instance['size'];
+								if($instance['size'] == '' or $instance['size'] == 0){
+									$w = "150";
+								}
+								else{
+									$w = $instance['size'];
+								}
 								$h = $instance['sizeH'];
 							}
 							echo "<a href='".get_permalink()."' title='".get_the_title()."'><img width='".$w."' height='".$h."' src='".$imageUrl."' alt='".the_title('','',FALSE)."'/></a>";
