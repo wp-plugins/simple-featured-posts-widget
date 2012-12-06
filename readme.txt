@@ -4,7 +4,7 @@ Donate link:
 Tags: featured, posts, widget, thumbnail
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.2.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ This widget show the first image found in the post as thumbnail or thumbnail ima
 * Choice the number of posts to show.
 * Posts list ordered by random or date.
 * Choose or exclude categories from posts list.
+* TimThumb support for a perfect resize.
 
 = Appearence =
 
@@ -38,7 +39,10 @@ The appearance is essential to allow people who use it to customize their own te
 You can exclude categories using "-" before its ID.
 
 = Is it possible to change the default thumbnail image? =
-You can replace default image in /wp-content/plugins/simple-featured-posts-widget/images/ folder.
+You can replace default image in '/wp-content/plugins/simple-featured-posts-widget/images/' folder.
+
+= How can i use TimThumb to resize my thumbnails? =
+Download latest version of TimThumb, placed in a folder on your website. In the same directory as the timthumb.php file you need to add 1 directory. The directory should be called 'cache' and needs to have its file permissions set to 775.
 
 
 == Screenshots ==
@@ -47,6 +51,9 @@ You can replace default image in /wp-content/plugins/simple-featured-posts-widge
 2. Appearence.
 
 == Changelog ==
+
+= 1.3 =
+* Added support of TimThumb.
 
 = 1.2.2 =
 * Fixed a bug with thumbnail size setting and IE browser.

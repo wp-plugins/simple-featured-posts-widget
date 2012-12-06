@@ -4,7 +4,7 @@ Plugin Name: Simple Featured Posts Widget
 Plugin URI: http://www.nebulosaweb.com/wordpress/simple-featured-post-widget-articoli-con-immagine-di-anteprima/
 Description: Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
 Author: Fabio Di Stasio
-Version: 1.2.2
+Version: 1.3
 Author URI: http://nebulosaweb.com
 */
 
@@ -69,6 +69,11 @@ class sfpWidget extends WP_Widget {
 								}
 								$h = $instance['sizeH'];
 							}
+							
+							if($instance['timthumb'] != ''){//<- if is set timthumb script url
+								$imageUrl = $instance['timthumb']."?src=".$imageUrl."&amp;w=".$w."&amp;h=".$h;
+							}
+							
 							echo "<a href='".get_permalink()."' title='".get_the_title()."'><img width='".$w."' height='".$h."' src='".$imageUrl."' alt='".the_title('','',FALSE)."'/></a>";
 						} 
 					?>
@@ -94,6 +99,7 @@ class sfpWidget extends WP_Widget {
 			$date = $instance['date'];
 			$size = $instance['size'];
 			$sizeH = $instance['sizeH'];
+			$timthumb = $instance['timthumb'];
 		}
 		else{
 			$title = "Featured Posts";
@@ -104,6 +110,7 @@ class sfpWidget extends WP_Widget {
 			$date = 1;
 			$size = 150;
 			$sizeH = '';
+			$timthumb = '';
 		}?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title');?>"><?php _e('Title:'); ?></label> 
@@ -141,6 +148,11 @@ class sfpWidget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('sizeH');?>"><?php _e('Thumbnail height:','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('sizeH');?>" name="<?php echo $this->get_field_name('sizeH');?>" type="text" value="<?php echo $sizeH; ?>"/>
 			<small>Automatically set if blank</small>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('timthumb');?>"><?php _e('TimThumb script URL','sfpw'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('timthumb');?>" name="<?php echo $this->get_field_name('timthumb');?>" type="text" value="<?php echo $timthumb; ?>"/>
+			<small>Example "/scripts/timthumb.php"</small>
 		</p>
 		<?php
 	}
