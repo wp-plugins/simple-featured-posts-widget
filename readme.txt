@@ -4,7 +4,7 @@ Donate link:
 Tags: featured, posts, widget, thumbnail
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,10 @@ Download latest version of TimThumb, placed in a folder on your website. In the 
 2. Appearence.
 
 == Changelog ==
+
+= 1.3.1 =
+* Plug-in optimized for translations.
+* Added italian translation.
 
 = 1.3 =
 * Added support of TimThumb.

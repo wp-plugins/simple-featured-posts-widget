@@ -4,13 +4,14 @@ Plugin Name: Simple Featured Posts Widget
 Plugin URI: http://www.nebulosaweb.com/wordpress/simple-featured-post-widget-articoli-con-immagine-di-anteprima/
 Description: Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
 Author: Fabio Di Stasio
-Version: 1.3
+Version: 1.3.1
 Author URI: http://nebulosaweb.com
 */
 
 include("sfpw-func.php");
 
 wp_enqueue_style('sfpw-style', plugin_dir_url(__FILE__).'/sfpw-style.css');
+load_plugin_textdomain('sfpw', false, 'simple-featured-posts-widget/lang');
 
 class sfpWidget extends WP_Widget {
 	function sfpWidget() {
@@ -147,12 +148,12 @@ class sfpWidget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('sizeH');?>"><?php _e('Thumbnail height:','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('sizeH');?>" name="<?php echo $this->get_field_name('sizeH');?>" type="text" value="<?php echo $sizeH; ?>"/>
-			<small>Automatically set if blank</small>
+			<small><?php _e('Automatically set if blank'); ?></small>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('timthumb');?>"><?php _e('TimThumb script URL','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('timthumb');?>" name="<?php echo $this->get_field_name('timthumb');?>" type="text" value="<?php echo $timthumb; ?>"/>
-			<small>Example "/scripts/timthumb.php"</small>
+			<small><?php _e('Example "/scripts/timthumb.php"'); ?></small>
 		</p>
 		<?php
 	}
