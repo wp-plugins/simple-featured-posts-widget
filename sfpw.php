@@ -131,7 +131,7 @@ class sfpWidget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('category');?>"><?php _e('Category ID (optional):','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('category');?>" name="<?php echo $this->get_field_name('category');?>" type="text" value="<?php echo $category; ?>"/>
-			<small>Category IDs, separated by commas</small>
+			<small><?php _e('Category IDs, separated by commas'); ?></small>
 		</p>
 		<p>
 			<input class="checkbox" <?php if($date == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('date');?>" name="<?php echo $this->get_field_name('date');?>" type="checkbox" value="1"/>
