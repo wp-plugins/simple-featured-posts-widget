@@ -4,7 +4,7 @@ Plugin Name: Simple Featured Posts Widget
 Plugin URI: http://www.nebulosaweb.com/wordpress/simple-featured-post-widget-articoli-con-immagine-di-anteprima/
 Description: Simple Featured Posts is a pratical widget that allows you to show a post list with thumbnails ordered by random or recent posts. You can also choose post's categories and how many posts you want to show.
 Author: Fabio Di Stasio
-Version: 1.3.1
+Version: 1.3.2
 Author URI: http://nebulosaweb.com
 */
 
@@ -84,7 +84,7 @@ class sfpWidget extends WP_Widget {
 			<?php endforeach;
 			$post = $tmp_post; ?>
 		</ul><?php
-
+		wp_reset_postdata();
 		echo $after_widget;
 	}
 	function update( $new_instance, $old_instance ) {
@@ -131,7 +131,7 @@ class sfpWidget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('category');?>"><?php _e('Category ID (optional):','sfpw'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('category');?>" name="<?php echo $this->get_field_name('category');?>" type="text" value="<?php echo $category; ?>"/>
-			<small>Category IDs, separated by commas</small>
+			<small><?php _e('Category IDs, separated by commas'); ?></small>
 		</p>
 		<p>
 			<input class="checkbox" <?php if($date == 1): ?>checked="checked"<?php endif?> id="<?php echo $this->get_field_id('date');?>" name="<?php echo $this->get_field_name('date');?>" type="checkbox" value="1"/>
