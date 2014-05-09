@@ -53,7 +53,8 @@ Download latest version of TimThumb, placed in a folder on your website. In the 
 == Changelog ==
 
 = 1.3.2 =
-* Added dutch translation (thanks to Patrick)
+* Added NL translation (thanks to Patrick).
+* Fixed a bug with post data displayed after this plugin (thanks to Brendon).
 
 = 1.3.1 =
 * Plug-in optimized for translations.
